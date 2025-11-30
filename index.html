@@ -6,22 +6,19 @@
 </head>
 <body>
 
-  <!-- Your audio file -->
-  <audio id="music" src="revording3_.mp3" autoplay loop muted></audio>
+  <!-- Correct file name -->
+  <audio id="music" src="Recording_3.mp3" autoplay loop muted></audio>
 
   <h2>Your music is now playing automatically…</h2>
 
   <script>
     const music = document.getElementById("music");
 
-    // Try to start playing while muted
     music.play().then(() => {
-      // After it starts, unmute it
       setTimeout(() => {
         music.muted = false;
-      }, 200);
+      }, 300);
     }).catch(() => {
-      // If still blocked, show button
       const btn = document.createElement("button");
       btn.textContent = "▶ Tap to Play";
       btn.style.fontSize = "24px";
@@ -36,4 +33,4 @@
   </script>
 
 </body>
-</html
+</html>
