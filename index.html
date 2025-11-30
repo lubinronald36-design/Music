@@ -6,22 +6,24 @@
 </head>
 <body>
 
-  <!-- Replace "song.mp3" with the name of your music file -->
-  <audio id="player" src="song.mp3" autoplay loop></audio>
-
-  <h2>Your music is now playing automatically…</h2>
+  <audio id="music" src="song.mp3" autoplay loop></audio>
 
   <script>
-    // Ensures autoplay works on most browsers
-    const audio = document.getElementById("player");
-    audio.play().catch(() => {
-      // If browser blocks autoplay, show a tap-to-play message
-      const msg = document.createElement("button");
-      msg.textContent = "▶ Tap to Play";
-      msg.style.fontSize = "24px";
-      msg.style.padding = "10px 20px";
-      msg.onclick = () => audio.play();
-      document.body.appendChild(msg);
+    const music = document.getElementById("music");
+
+    // Try to play automatically
+    music.play().catch(() => {
+      // If the browser blocks it, show a button
+      const btn = document.createElement("button");
+      btn.textContent = "▶ Tap to Play Music";
+      btn.style.fontSize = "24px";
+      btn.style.padding = "12px 25px";
+      btn.style.marginTop = "40px";
+      btn.onclick = () => {
+        music.play();
+        btn.remove();
+      };
+      document.body.appendChild(btn);
     });
   </script>
 
