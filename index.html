@@ -1,88 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Music + Scrolling Poems</title>
+<meta charset="UTF-8">
+<title>Auto Play Music + Scrolling Text</title>
 
-  <style>
-    body {
-      background: black;
-      color: white;
-      font-family: "Georgia", serif;
-      text-align: center;
-      overflow: hidden;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+  body {
+    margin: 0;
+    background: black;
+    color: white;
+    font-family: "Georgia", serif;
+    text-align: center;
+    overflow: hidden;
+  }
 
-    /* Scrolling text */
-    #scrollText {
-      position: absolute;
-      width: 100%;
-      top: 100%;
-      font-size: 28px;
-      line-height: 1.6;
-      animation: scrollUp 40s linear infinite;
-      white-space: normal;
-    }
+  #scrollText {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    font-size: 24px;
+    line-height: 1.8;
+    animation: scrollUp 40s linear infinite;
+  }
 
-    @keyframes scrollUp {
-      0% { top: 100%; }
-      100% { top: -200%; }
-    }
-  </style>
+  @keyframes scrollUp {
+    0%   { top: 100%; }
+    100% { top: -200%; }
+  }
+</style>
 </head>
+
 <body>
 
-  <!-- Your music file -->
-  <audio id="music" src="Recording_3.mp3" autoplay loop muted></audio>
+<audio id="music" src="Recording_3.mp3" autoplay loop muted></audio>
 
-  <h2>Your music is now playing automatically…</h2>
+<div id="scrollText">
+  <p>A beautiful girl is like sunrise—<br>soft, warm, and full of promise.</p>
 
-  <!-- SCROLLING POEMS -->
-  <div id="scrollText">
+  <p>Her smile is a quiet magic<br>
+     that turns ordinary moments into gold.</p>
 
-    <p>She walks like sunrise, gentle and warm…</p>
-    <p>Her smile softens even the strongest storm…</p>
-    <p>Every look she gives feels like summer breeze…</p>
-    <p>A beauty that brings restless hearts to peace…</p>
+  <p>Her presence colors the world<br>
+     like sunlight spilling over morning hills.</p>
 
-    <br><br>
+  <p>There is grace in her steps,<br>
+     poetry in her silence,<br>
+     and whole galaxies in her eyes.</p>
 
-    <p>Her eyes shine brighter than the evening sky…</p>
-    <p>A perfect blend of mystery passing by…</p>
-    <p>Like poetry written in moonlit streams…</p>
-    <p>She is the light inside midnight dreams…</p>
+  <p>She is beauty that does not demand attention—<br>
+     it simply exists.</p>
 
-    <br><br>
+  <p>And the world is softer<br>
+     just because she is in it.</p>
+</div>
 
-    <p>When she laughs, the whole world glows…</p>
-    <p>Softer than petals of a blooming rose…</p>
-    <p>She is the beauty time can't erase…</p>
-    <p>A gentle soul wrapped in stunning grace…</p>
+<script>
+const music = document.getElementById("music");
 
-  </div>
+// Start muted (allowed by browser)
+music.play();
 
-  <script>
-    const music = document.getElementById("music");
+// Unmute on ANY interaction
+const enableSound = () => {
+  music.muted = false;
+  music.play();
+  document.removeEventListener("touchstart", enableSound);
+  document.removeEventListener("click", enableSound);
+};
 
-    music.play().then(() => {
-      setTimeout(() => {
-        music.muted = false;
-      }, 300);
-    }).catch(() => {
-      const btn = document.createElement("button");
-      btn.textContent = "▶ Tap to Play";
-      btn.style.fontSize = "24px";
-      btn.style.padding = "12px 25px";
-      btn.onclick = () => {
-        music.muted = false;
-        music.play();
-        btn.remove();
-      };
-      document.body.appendChild(btn);
-    });
-  </script>
+// Touch OR click anywhere = unmute
+document.addEventListener("touchstart", enableSound);
+document.addEventListener("click", enableSound);
+</script>
 
 </body>
 </html>
