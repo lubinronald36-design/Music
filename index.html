@@ -1,79 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Auto Play Music + Scrolling Text</title>
+  <meta charset="UTF-8">
+  <title>Beautiful Girl Poem Page</title>
 
-<style>
-  body {
-    margin: 0;
-    background: black;
-    color: white;
-    font-family: "Georgia", serif;
-    text-align: center;
-    overflow: hidden;
-  }
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #ffb6e6;
+      font-family: "Georgia", serif;
+      overflow: hidden;
+      text-align: center;
+    }
 
-  #scrollText {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    font-size: 24px;
-    line-height: 1.8;
-    animation: scrollUp 40s linear infinite;
-  }
+    .scrolling-text {
+      position: absolute;
+      bottom: -100%;
+      width: 100%;
+      font-size: 28px;
+      line-height: 1.8;
+      animation: scrollUp 40s linear infinite;
+      white-space: pre-wrap;
+      padding: 20px;
+      text-shadow: 0 0 12px #ff66c4;
+    }
 
-  @keyframes scrollUp {
-    0%   { top: 100%; }
-    100% { top: -200%; }
-  }
-</style>
+    @keyframes scrollUp {
+      0% { bottom: -120%; opacity: 0; }
+      5% { opacity: 1; }
+      100% { bottom: 120%; opacity: 1; }
+    }
+
+    @keyframes glow {
+      0% { opacity: 0; text-shadow: 0 0 0px #ff66c4; }
+      100% { opacity: 1; text-shadow: 0 0 12px #ff66c4; }
+    }
+
+    h2 {
+      animation: glow 3s ease-in-out forwards;
+      margin-top: 30px;
+      font-size: 24px;
+    }
+
+    /* Footer Message */
+    .footer {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      color: #ffe6f7;
+      font-size: 18px;
+      text-shadow: 0 0 8px #ff66c4;
+      opacity: 0.9;
+    }
+  </style>
 </head>
 
 <body>
 
-<audio id="music" src="Recording_3.mp3" autoplay loop muted></audio>
+  <!-- Autoplay Audio -->
+  <audio id="music" src="Recording_3.mp3" autoplay loop muted></audio>
 
-<div id="scrollText">
-  <p>A beautiful girl is like sunrise—<br>soft, warm, and full of promise.</p>
+  <h2>✨ A Beautiful Girl… A Beautiful Soul ✨</h2>
 
-  <p>Her smile is a quiet magic<br>
-     that turns ordinary moments into gold.</p>
+  <!-- Scrolling Poems -->
+  <div class="scrolling-text">
+She walks like the moonlight,
+soft on quiet water…
+A whisper of beauty,
+that the night itself admires.
 
-  <p>Her presence colors the world<br>
-     like sunlight spilling over morning hills.</p>
+Her smile?
+It could heal a heart
+she doesn’t even know is hurting.
 
-  <p>There is grace in her steps,<br>
-     poetry in her silence,<br>
-     and whole galaxies in her eyes.</p>
+Her eyes?
+They hold galaxies—
+the kind you get lost in,
+and never want to escape.
 
-  <p>She is beauty that does not demand attention—<br>
-     it simply exists.</p>
+She is not just beautiful…
+she is poetry,
+breathing,
+walking,
+smiling. ✨
 
-  <p>And the world is softer<br>
-     just because she is in it.</p>
-</div>
 
-<script>
-const music = document.getElementById("music");
+—
 
-// Start muted (allowed by browser)
-music.play();
 
-// Unmute on ANY interaction
-const enableSound = () => {
-  music.muted = false;
-  music.play();
-  document.removeEventListener("touchstart", enableSound);
-  document.removeEventListener("click", enableSound);
-};
+If beauty were a flower,
+she’d be the one
+that grows even in the dark.
 
-// Touch OR click anywhere = unmute
-document.addEventListener("touchstart", enableSound);
-document.addEventListener("click", enableSound);
-</script>
+If beauty were a sound,
+she’d be a soft melody
+that stays in your mind
+long after it ends.
+
+She is rare.
+She is gentle.
+She is unforgettable.
+  </div>
+
+  <!-- Your footer message -->
+  <div class="footer">
+    Prepared by Teacher Ronald for all children of God in the world.<br>
+    Contact: 50935737556 — lubinronald36@gmail.com
+  </div>
+
+  <script>
+    const music = document.getElementById("music");
+
+    music.play().then(() => {
+      setTimeout(() => music.muted = false, 300);
+    }).catch(() => {
+      const btn = document.createElement("button");
+      btn.textContent = "▶ Tap to Play Music";
+      btn.style.fontSize = "26px";
+      btn.style.padding = "15px 30px";
+      btn.style.marginTop = "20px";
+      btn.style.borderRadius = "12px";
+      btn.style.border = "none";
+      btn.style.background = "#ff66c4";
+      btn.style.color = "#fff";
+      btn.style.cursor = "pointer";
+
+      btn.onclick = () => {
+        music.muted = false;
+        music.play();
+        btn.remove();
+      };
+
+      document.body.appendChild(btn);
+    });
+  </script>
 
 </body>
 </html>
