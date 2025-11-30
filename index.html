@@ -1,36 +1,76 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Auto Play Music</title>
+  <title>Auto Play Music + Scrolling Text</title>
+
+  <style>
+    body {
+      background: black;
+      color: white;
+      font-family: "Georgia", serif;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Scrolling text */
+    #scrollText {
+      position: absolute;
+      bottom: -100%;
+      width: 100%;
+      font-size: 28px;
+      animation: scrollUp 22s linear infinite;
+      white-space: pre-line;
+    }
+
+    @keyframes scrollUp {
+      0% { bottom: -100%; }
+      100% { bottom: 120%; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Correct file name -->
+  <!-- MUSIC -->
   <audio id="music" src="Recording_3.mp3" autoplay loop muted></audio>
 
-  <h2>Your music is now playing automatically…</h2>
+  <!-- SCROLLING POEM -->
+  <div id="scrollText">
+    A beautiful girl is like sunrise—  
+    soft, warm, and full of promise.  
 
-  <script>
-    const music = document.getElementById("music");
+    Her smile is a quiet magic  
+    that turns ordinary moments into gold.  
 
-    music.play().then(() => {
-      setTimeout(() => {
-        music.muted = false;
-      }, 300);
-    }).catch(() => {
-      const btn = document.createElement("button");
-      btn.textContent = "▶ Tap to Play";
-      btn.style.fontSize = "24px";
-      btn.style.padding = "12px 25px";
-      btn.onclick = () => {
-        music.muted = false;
-        music.play();
-        btn.remove();
-      };
-      document.body.appendChild(btn);
-    });
-  </script>
+    Her presence colors the world  
+    like petals drifting on a calm wind.  
+
+    And her heart…  
+    is a poem the universe reads  
+    again and again.
+  </div>
+
+<script>
+  const music = document.getElementById("music");
+
+  music.play().then(() => {
+    setTimeout(() => {
+      music.muted = false;
+    }, 300);
+  }).catch(() => {
+    const btn = document.createElement("button");
+    btn.textContent = "▶ Tap to Play";
+    btn.style.fontSize = "24px";
+    btn.style.padding = "12px 25px";
+    btn.onclick = () => {
+      music.muted = false;
+      music.play();
+      btn.remove();
+    };
+    document.body.appendChild(btn);
+  });
+</script>
 
 </body>
 </html>
