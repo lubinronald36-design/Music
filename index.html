@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Auto Play Music + Scrolling Text</title>
+  <title>Music + Scrolling Poems</title>
 
   <style>
     body {
@@ -11,65 +11,78 @@
       font-family: "Georgia", serif;
       text-align: center;
       overflow: hidden;
+      margin: 0;
+      padding: 0;
     }
 
     /* Scrolling text */
     #scrollText {
       position: absolute;
-      bottom: -100%;
       width: 100%;
+      top: 100%;
       font-size: 28px;
-      animation: scrollUp 22s linear infinite;
-      white-space: pre-line;
+      line-height: 1.6;
+      animation: scrollUp 40s linear infinite;
+      white-space: normal;
     }
 
     @keyframes scrollUp {
-      0% { bottom: -100%; }
-      100% { bottom: 120%; }
+      0% { top: 100%; }
+      100% { top: -200%; }
     }
   </style>
 </head>
 <body>
 
-  <!-- MUSIC -->
+  <!-- Your music file -->
   <audio id="music" src="Recording_3.mp3" autoplay loop muted></audio>
 
-  <!-- SCROLLING POEM -->
+  <h2>Your music is now playing automatically…</h2>
+
+  <!-- SCROLLING POEMS -->
   <div id="scrollText">
-    A beautiful girl is like sunrise—  
-    soft, warm, and full of promise.  
 
-    Her smile is a quiet magic  
-    that turns ordinary moments into gold.  
+    <p>She walks like sunrise, gentle and warm…</p>
+    <p>Her smile softens even the strongest storm…</p>
+    <p>Every look she gives feels like summer breeze…</p>
+    <p>A beauty that brings restless hearts to peace…</p>
 
-    Her presence colors the world  
-    like petals drifting on a calm wind.  
+    <br><br>
 
-    And her heart…  
-    is a poem the universe reads  
-    again and again.
+    <p>Her eyes shine brighter than the evening sky…</p>
+    <p>A perfect blend of mystery passing by…</p>
+    <p>Like poetry written in moonlit streams…</p>
+    <p>She is the light inside midnight dreams…</p>
+
+    <br><br>
+
+    <p>When she laughs, the whole world glows…</p>
+    <p>Softer than petals of a blooming rose…</p>
+    <p>She is the beauty time can't erase…</p>
+    <p>A gentle soul wrapped in stunning grace…</p>
+
   </div>
 
-<script>
-  const music = document.getElementById("music");
+  <script>
+    const music = document.getElementById("music");
 
-  music.play().then(() => {
-    setTimeout(() => {
-      music.muted = false;
-    }, 300);
-  }).catch(() => {
-    const btn = document.createElement("button");
-    btn.textContent = "▶ Tap to Play";
-    btn.style.fontSize = "24px";
-    btn.style.padding = "12px 25px";
-    btn.onclick = () => {
-      music.muted = false;
-      music.play();
-      btn.remove();
-    };
-    document.body.appendChild(btn);
-  });
-</script>
+    music.play().then(() => {
+      setTimeout(() => {
+        music.muted = false;
+      }, 300);
+    }).catch(() => {
+      const btn = document.createElement("button");
+      btn.textContent = "▶ Tap to Play";
+      btn.style.fontSize = "24px";
+      btn.style.padding = "12px 25px";
+      btn.onclick = () => {
+        music.muted = false;
+        music.play();
+        btn.remove();
+      };
+      document.body.appendChild(btn);
+    });
+  </script>
 
 </body>
 </html>
